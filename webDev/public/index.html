@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form method="post" action="/student/update/3">
+        <input type="text" name="student_name" id="student_name">
+        <input type="email" name="student_email" id="student_email1">
+        <!-- <input type="submit" value="Save Student Data"> -->
+        <input type="submit" value="Update Student Data">
+    </form>
+
+    <!-- <form method="post" action="/student/login"> -->
+        <input type="text" name="student_id" id="student_id">
+        <input type="email" name="student_email" id="student_email">
+        <!-- <input type="submit" value="Save Student Data"> -->
+        <button type="submit" id="btnLogin" >Login</button>
+    <!-- </form> -->
+    <p id="data">Response is generated from Index.html</p>
+    <button id="student">Submit student Details</button>
+    <button onclick="func2();">Function 2</button>
+    KeyDown: <div id="keyd"></div>
+    KeyUp: <div id="keyup"></div>
+    KeyPress: <div id="keypress"></div>
+    <input type="text" name="test" id="test">
+    <script>
+        $('#btnLogin').on('click',(e)=>{
+            e.preventDefault();
+            var student={student_id:$('#student_id').val(),
+            student_email:$('#student_email').val()}
+            $.post('/student/login',student,(response)=>{
+                console.log(response)
+                /*debugger
+                if(response.login)
+                {
+                    location.href="welcome.html"
+                }
+                else{
+                    location.href="sorry.html"
+                }*/
+            })
+        })
+$('#test').on('keydown',function(){
+    var val=$('#test').val()
+    $('#keyd').html(val)
+})
+$('#test').on('keyup',function(){
+    var val=$('#test').val()
+    $('#keyup').html(val)
+    
+})
+$('#test').on('keypress',function(){
+    var val=$('#test').val()
+    $('#keypress').html(val)
+    
+})
+        $('#student').on('click',function(){
+            // $.get('/student',{},(data)=>{
+            //     data.map(x=>
+            //     {
+            //         $('#data').append(x.name + "<br>")
+            //     }
+            //     )
+            // })
+            
+            
+            
+            // $.post('/student',
+            // {student_name:"Uttam",student_email:"uttam@bvicam.in"},
+            // (data)=>{
+            //     console.log(data)
+            // })
+        })
+        $(document).ready(()=>{
+            
+        })
+        
+        /*function func1(){
+            document.getElementById("data").innerHTML="Hello Function 1"
+        }
+        function func2(){
+            $('#data').html("Hello Function 2")
+        }
+        $('#data').on('click',()=>{
+            $('#data').html("data Clicked ")
+        })*/
+    </script>
+</body>
+</html>
